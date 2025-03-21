@@ -36,30 +36,44 @@ def host_mode():
         print("❌ Failed to create lobby")
         return
 
-    print("✅ Lobby created. Wait for player to join via Steam overlay...")
-    client_id = wait_for_connection()
-    lobby_chat(client_id)
+    # Assume the client knows our ID and will initiate contact
+    print("✅ Lobby created. Waiting for connection...")
+    client_id = 76561199837045498  # <- your second account Steam ID
+    sender = send_hello_until_connected(client_id)  # We respond to whoever pings us
+    lobby_chat(sender)
+
 
 def client_mode():
     print("🔗 Starting as client...")
 
-    # Wait for Steam to complete overlay lobby join
-    time.sleep(2)
+    time.sleep(2)  # Let Steam complete the join
 
-    # Send message to lobby host (detected after join)
-    my_id = steam.get_steam_id()
-    print(f"✅ Client SteamID: {my_id}")
+    # Replace with actual known host SteamID
+    host_id = 76561198074054767
+    print(f"📤 Attempting to connect to host {host_id}...")
 
-    # Attempt to talk to whoever responds
-    # Send to the known host ID or broadcast message
-    # This only works if you've joined a Steam lobby!
-    try_ids = [76561198074054767]  # Add known hosts here or scan friends later
-    for target in try_ids:
-        print(f"📤 Sending message to host {target}")
-        steam.send_p2p(target, b"Hello from client!")
+    try:
+        partner_id = send_hello_until_connected(host_id)
+        lobby_chat(partner_id)
 
-    partner_id = wait_for_connection()
-    lobby_chat(partner_id)
+    except TimeoutError as e:
+        print(str(e))
+
+
+def send_hello_until_connected(target_id: int, timeout=10.0):
+    print(f"🚀 Sending hello to {target_id} until connected...")
+    start = time.time()
+    while time.time() - start < timeout:
+        steam.run_callbacks()
+        steam.send_p2p(target_id, b"hello?")
+        result = steam.read_p2p()
+        if result:
+            msg, sender = result
+            print(f"✅ Connected to {sender}: {msg.decode()}")
+            return sender
+        time.sleep(0.5)
+    raise TimeoutError("❌ Failed to establish connection.")
+
 
 def main():
     steam.init_steam()
