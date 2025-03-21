@@ -3873,7 +3873,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
  *     return py_data, remote_id.ConvertToUint64()
  * 
  * def get_friend_count():             # <<<<<<<<<<<<<<
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ *     return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate
  * 
  */
 
@@ -3905,12 +3905,12 @@ static PyObject *__pyx_pf_13steam_wrapper_18get_friend_count(CYTHON_UNUSED PyObj
   /* "steam_wrapper.pyx":71
  * 
  * def get_friend_count():
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate             # <<<<<<<<<<<<<<
+ *     return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate             # <<<<<<<<<<<<<<
  * 
- * def get_friend_by_index(int index):
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(SteamFriends()->GetFriendCount(0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(SteamFriends()->GetFriendCount(1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3920,7 +3920,7 @@ static PyObject *__pyx_pf_13steam_wrapper_18get_friend_count(CYTHON_UNUSED PyObj
  *     return py_data, remote_id.ConvertToUint64()
  * 
  * def get_friend_count():             # <<<<<<<<<<<<<<
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ *     return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate
  * 
  */
 
@@ -3935,8 +3935,8 @@ static PyObject *__pyx_pf_13steam_wrapper_18get_friend_count(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":73
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+/* "steam_wrapper.pyx":74
+ * 
  * 
  * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
  *     sid = SteamFriends().GetFriendByIndex(index, 0)
@@ -3996,23 +3996,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 74, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_by_index") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_by_index") < 0)) __PYX_ERR(0, 74, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_index = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 74, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_friend_by_index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_friend_by_index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 74, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4049,7 +4049,7 @@ static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_friend_by_index", 1);
 
-  /* "steam_wrapper.pyx":74
+  /* "steam_wrapper.pyx":75
  * 
  * def get_friend_by_index(int index):
  *     sid = SteamFriends().GetFriendByIndex(index, 0)             # <<<<<<<<<<<<<<
@@ -4058,7 +4058,7 @@ static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED Py
  */
   __pyx_v_sid = SteamFriends()->GetFriendByIndex(__pyx_v_index, 0);
 
-  /* "steam_wrapper.pyx":75
+  /* "steam_wrapper.pyx":76
  * def get_friend_by_index(int index):
  *     sid = SteamFriends().GetFriendByIndex(index, 0)
  *     return sid.ConvertToUint64()             # <<<<<<<<<<<<<<
@@ -4066,14 +4066,14 @@ static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED Py
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_sid.ConvertToUint64()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_sid.ConvertToUint64()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":73
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+  /* "steam_wrapper.pyx":74
+ * 
  * 
  * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
  *     sid = SteamFriends().GetFriendByIndex(index, 0)
@@ -4091,7 +4091,7 @@ static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":78
+/* "steam_wrapper.pyx":79
  * 
  * 
  * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
@@ -4152,12 +4152,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 78, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_game_played") < 0)) __PYX_ERR(0, 78, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_game_played") < 0)) __PYX_ERR(0, 79, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -4168,7 +4168,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_friend_game_played", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 78, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_friend_game_played", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4210,17 +4210,17 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_friend_game_played", 1);
 
-  /* "steam_wrapper.pyx":80
+  /* "steam_wrapper.pyx":81
  * def get_friend_game_played(friend_id):
  *     cdef uint32_t app_id
  *     cdef uint64_t steam_id = friend_id             # <<<<<<<<<<<<<<
  *     cdef CSteamID sid
  *     (<uint64_t*>&sid)[0] = steam_id
  */
-  __pyx_t_1 = __Pyx_PyInt_As_uint64_t(__pyx_v_friend_id); if (unlikely((__pyx_t_1 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_uint64_t(__pyx_v_friend_id); if (unlikely((__pyx_t_1 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
   __pyx_v_steam_id = __pyx_t_1;
 
-  /* "steam_wrapper.pyx":82
+  /* "steam_wrapper.pyx":83
  *     cdef uint64_t steam_id = friend_id
  *     cdef CSteamID sid
  *     (<uint64_t*>&sid)[0] = steam_id             # <<<<<<<<<<<<<<
@@ -4229,7 +4229,7 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
  */
   (((uint64_t *)(&__pyx_v_sid))[0]) = __pyx_v_steam_id;
 
-  /* "steam_wrapper.pyx":85
+  /* "steam_wrapper.pyx":86
  * 
  *     cdef FriendGameInfo_t info
  *     if SteamFriends().GetFriendGamePlayed(sid, &info):             # <<<<<<<<<<<<<<
@@ -4239,7 +4239,7 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
   __pyx_t_2 = SteamFriends()->GetFriendGamePlayed(__pyx_v_sid, (&__pyx_v_info));
   if (__pyx_t_2) {
 
-    /* "steam_wrapper.pyx":86
+    /* "steam_wrapper.pyx":87
  *     cdef FriendGameInfo_t info
  *     if SteamFriends().GetFriendGamePlayed(sid, &info):
  *         return {"app_id": info.m_gameID.AppID()}             # <<<<<<<<<<<<<<
@@ -4247,17 +4247,17 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_info.m_gameID.AppID()); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_info.m_gameID.AppID()); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_app_id, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_app_id, __pyx_t_4) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "steam_wrapper.pyx":85
+    /* "steam_wrapper.pyx":86
  * 
  *     cdef FriendGameInfo_t info
  *     if SteamFriends().GetFriendGamePlayed(sid, &info):             # <<<<<<<<<<<<<<
@@ -4266,7 +4266,7 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
  */
   }
 
-  /* "steam_wrapper.pyx":87
+  /* "steam_wrapper.pyx":88
  *     if SteamFriends().GetFriendGamePlayed(sid, &info):
  *         return {"app_id": info.m_gameID.AppID()}
  *     return None             # <<<<<<<<<<<<<<
@@ -4276,7 +4276,7 @@ static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":78
+  /* "steam_wrapper.pyx":79
  * 
  * 
  * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
@@ -4486,34 +4486,34 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     return py_data, remote_id.ConvertToUint64()
  * 
  * def get_friend_count():             # <<<<<<<<<<<<<<
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ *     return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate
  * 
  */
   __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_count, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 70, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":73
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+  /* "steam_wrapper.pyx":74
+ * 
  * 
  * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
  *     sid = SteamFriends().GetFriendByIndex(index, 0)
  *     return sid.ConvertToUint64()
  */
-  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_n_s_index, __pyx_n_s_sid); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_n_s_index, __pyx_n_s_sid); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_by_index, 73, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_by_index, 74, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 74, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":78
+  /* "steam_wrapper.pyx":79
  * 
  * 
  * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
  *     cdef uint32_t app_id
  *     cdef uint64_t steam_id = friend_id
  */
-  __pyx_tuple__20 = PyTuple_Pack(5, __pyx_n_s_friend_id, __pyx_n_s_app_id, __pyx_n_s_steam_id, __pyx_n_s_sid, __pyx_n_s_info); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(5, __pyx_n_s_friend_id, __pyx_n_s_app_id, __pyx_n_s_steam_id, __pyx_n_s_sid, __pyx_n_s_info); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_game_played, 78, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_game_played, 79, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5061,7 +5061,7 @@ if (!__Pyx_RefNanny) {
  *     return py_data, remote_id.ConvertToUint64()
  * 
  * def get_friend_count():             # <<<<<<<<<<<<<<
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ *     return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate
  * 
  */
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_19get_friend_count, 0, __pyx_n_s_get_friend_count, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
@@ -5069,28 +5069,28 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_count, __pyx_t_3) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "steam_wrapper.pyx":73
- *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+  /* "steam_wrapper.pyx":74
+ * 
  * 
  * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
  *     sid = SteamFriends().GetFriendByIndex(index, 0)
  *     return sid.ConvertToUint64()
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_21get_friend_by_index, 0, __pyx_n_s_get_friend_by_index, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_21get_friend_by_index, 0, __pyx_n_s_get_friend_by_index, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_by_index, __pyx_t_3) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_by_index, __pyx_t_3) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "steam_wrapper.pyx":78
+  /* "steam_wrapper.pyx":79
  * 
  * 
  * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
  *     cdef uint32_t app_id
  *     cdef uint64_t steam_id = friend_id
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_23get_friend_game_played, 0, __pyx_n_s_get_friend_game_played, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_23get_friend_game_played, 0, __pyx_n_s_get_friend_game_played, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_game_played, __pyx_t_3) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_game_played, __pyx_t_3) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "steam_wrapper.pyx":1

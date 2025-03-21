@@ -68,7 +68,8 @@ def read_p2p(int channel=0):
     return py_data, remote_id.ConvertToUint64()
 
 def get_friend_count():
-    return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+    return SteamFriends().GetFriendCount(1)  # 1 = k_EFriendFlagImmediate
+
 
 def get_friend_by_index(int index):
     sid = SteamFriends().GetFriendByIndex(index, 0)

@@ -1,97 +1,100 @@
+import os
+import sys
 import time
+import pygame
+
+# PyInstaller + Steam AppID setup
+if hasattr(sys, '_MEIPASS'):
+    os.chdir(sys._MEIPASS)
+os.environ["SteamAppId"] = "480"
+os.environ["SteamGameId"] = "480"
+
 import steam_wrapper as steam
 
-APP_ID = 480  # Spacewar AppID
+# --- Pygame Setup ---
+pygame.init()
+screen = pygame.display.set_mode((800, 600), pygame.SCALED | pygame.RESIZABLE)
+pygame.display.set_caption("Echoes of Eternity")
+clock = pygame.time.Clock()
+font = pygame.font.Font(None, 24)
 
-def wait_for_connection(target_id=None):
-    print("🔄 Waiting for connection...")
-    while True:
-        steam.run_callbacks()
-        result = steam.read_p2p()
-        if result:
-            msg, sender = result
-            print(f"📨 From {sender}: {msg.decode()}")
-            if not target_id:
-                steam.send_p2p(sender, b"Welcome to the game!")
-            return sender
-        time.sleep(0.05)
+log_lines = []
+input_text = ""
+in_chat = False
+partner_id = None
 
-def lobby_chat(partner_id):
-    print("💬 Chatting with:", partner_id)
-    while True:
-        steam.run_callbacks()
-        result = steam.read_p2p()
-        if result:
-            msg, sender = result
-            print(f"📨 From {sender}: {msg.decode()}")
-        time.sleep(0.05)
+def log(msg):
+    log_lines.append(msg)
+    if len(log_lines) > 100:
+        log_lines.pop(0)
+    print(msg)
 
-def find_friend_running_game(target_app_id=APP_ID):
-    print("👥 Scanning friends for active players...")
-    count = steam.get_friend_count()
-    for i in range(count):
-        fid = steam.get_friend_by_index(i)
-        game_info = steam.get_friend_game_played(fid)
-        if game_info and game_info["app_id"] == target_app_id:
-            print(f"✅ Found friend in-game: {fid}")
-            return fid
-    print("❌ No friend found running the game.")
-    return None
+def draw_console():
+    screen.fill((10, 10, 10))
+    for i, line in enumerate(log_lines[-28:]):
+        surf = font.render(line, True, (200, 255, 200))
+        screen.blit(surf, (20, 20 + i * 20))
+    prompt = f"> {input_text}_"
+    prompt_surf = font.render(prompt, True, (255, 255, 100))
+    screen.blit(prompt_surf, (20, 580))
+    pygame.display.flip()
 
-def send_hello_until_connected(target_id, timeout=10.0):
-    print(f"🚀 Connecting to {target_id}...")
-    start = time.time()
-    while time.time() - start < timeout:
-        steam.run_callbacks()
-        steam.send_p2p(target_id, b"hello?")
-        result = steam.read_p2p()
-        if result:
-            msg, sender = result
-            print(f"✅ Connected to {sender}: {msg.decode()}")
-            return sender
-        time.sleep(0.5)
-    raise TimeoutError("❌ Failed to connect.")
+def handle_command(cmd):
+    global partner_id, in_chat
+    if cmd == "h":
+        log("🛠 Hosting lobby...")
+        if not steam.create_lobby(2, 2):
+            log("❌ Failed to create lobby")
+            return
+        log("✅ Lobby created. Waiting for player to join via overlay...")
+    elif cmd == "j":
+        log("🔗 Join mode selected. Please join game via Steam overlay.")
+    elif cmd == "exit":
+        pygame.quit()
+        steam.shutdown_steam()
+        sys.exit()
+    else:
+        log(f"❌ Unknown command: {cmd}")
 
-def host_mode():
-    print("🛠 Starting as host...")
-    if not steam.create_lobby(2, 2):
-        print("❌ Failed to create lobby")
-        return
-    print("✅ Lobby created. Waiting for friend to join via Steam overlay...")
-    sender = wait_for_connection()
-    lobby_chat(sender)
-
-def client_mode():
-    print("🔗 Starting as client...")
-    time.sleep(2)  # Give Steam time to finalize join
-
-    host_id = find_friend_running_game()
-    if not host_id:
-        print("❌ No host detected. Exiting.")
-        return
-
-    try:
-        partner = send_hello_until_connected(host_id)
-        lobby_chat(partner)
-    except TimeoutError as e:
-        print(str(e))
+def check_messages():
+    global partner_id, in_chat
+    result = steam.read_p2p()
+    if result:
+        msg, sender = result
+        log(f"📨 From {sender}: {msg.decode()}")
+        if not in_chat:
+            partner_id = sender
+            steam.send_p2p(sender, b"Welcome to the game!")
+            in_chat = True
 
 def main():
+    global input_text
     steam.init_steam()
-    my_id = steam.get_steam_id()
-    print(f"🎮 Running as SteamID: {my_id}")
-    try:
-        choice = input("🟢 Host or Join? [h/j] ").strip().lower()
-        if choice == "h":
-            host_mode()
-        elif choice == "j":
-            client_mode()
-        else:
-            print("❌ Invalid choice.")
-    except KeyboardInterrupt:
-        print("🛑 Shutting down.")
-    finally:
-        steam.shutdown_steam()
+    log(f"🎮 SteamID: {steam.get_steam_id()}")
+    log("🟢 Type 'h' to host or 'j' to join. Use overlay to join games. Type 'exit' to quit.")
+
+    while True:
+        steam.run_callbacks()
+        check_messages()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                steam.shutdown_steam()
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    input_text = input_text[:-1]
+                elif event.key == pygame.K_RETURN:
+                    cmd = input_text.strip().lower()
+                    log(f"> {cmd}")
+                    handle_command(cmd)
+                    input_text = ""
+                else:
+                    input_text += event.unicode
+
+        draw_console()
+        clock.tick(30)
 
 if __name__ == "__main__":
     main()
