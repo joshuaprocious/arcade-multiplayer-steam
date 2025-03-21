@@ -1,1 +1,5 @@
+Cython==3.0.12
 pygame==2.6.1
+setuptools==77.0.3
+steamworks @ file:///N:/Python/Games/AI%20Generated%20Games/arcade-multiplayer-steam/SteamworksPy
+wheel==0.45.1
