@@ -1,0 +1,4 @@
+to build from root
+
+
+pyinstaller --onefile --console --add-data "steam_wrapper.cp312-win_amd64.pyd;." --add-data "steam_api64.dll;." game.py

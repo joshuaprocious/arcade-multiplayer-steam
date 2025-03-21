@@ -47,14 +47,26 @@ def handle_command(cmd):
             log("❌ Failed to create lobby")
             return
         log("✅ Lobby created. Waiting for player to join via overlay...")
+        log("✅ Waiting for lobby propagation...")
+
+        # Attempt to confirm by checking friend list or running callbacks
+        for _ in range(30):
+            steam.run_callbacks()
+            time.sleep(0.1)
+
     elif cmd == "j":
         log("🔗 Join mode selected. Please join game via Steam overlay.")
+        log("⌛ Waiting for host to message you...")
     elif cmd == "exit":
         pygame.quit()
         steam.shutdown_steam()
         sys.exit()
+    elif in_chat and partner_id:
+        steam.send_p2p(partner_id, cmd.encode())
+        log(f"💬 You: {cmd}")
     else:
-        log(f"❌ Unknown command: {cmd}")
+        log(f"❌ Unknown command or not connected: {cmd}")
+
 
 def check_messages():
     global partner_id, in_chat
@@ -64,8 +76,9 @@ def check_messages():
         log(f"📨 From {sender}: {msg.decode()}")
         if not in_chat:
             partner_id = sender
-            steam.send_p2p(sender, b"Welcome to the game!")
             in_chat = True
+            log(f"✅ Connected to {sender}. You may now chat.")
+
 
 def main():
     global input_text
@@ -86,10 +99,11 @@ def main():
                 if event.key == pygame.K_BACKSPACE:
                     input_text = input_text[:-1]
                 elif event.key == pygame.K_RETURN:
-                    cmd = input_text.strip().lower()
+                    cmd = input_text.strip()
                     log(f"> {cmd}")
-                    handle_command(cmd)
+                    handle_command(cmd.lower())
                     input_text = ""
+
                 else:
                     input_text += event.unicode
 
