@@ -31,8 +31,9 @@ def get_steam_id():
     return sid.ConvertToUint64()
 
 def create_lobby(int lobby_type, int max_members):
-    return matchmaking.CreateLobby(<ELobbyType>lobby_type, max_members)
-
+    cdef SteamAPICall_t call = matchmaking.CreateLobby(<ELobbyType>lobby_type, max_members)
+    print("🔧 CreateLobby() call handle:", call)
+    return call != 0
 
 def get_num_lobby_members(uint64_t lobby_id):
     cdef CSteamID lid = CSteamID()

@@ -32,7 +32,6 @@ cdef extern from "steam/steam_api.h":
     ISteamMatchmaking* SteamMatchmaking()
     ISteamNetworking* SteamNetworking()
 
-cdef extern from "steam/steam_api.h":
     cdef enum ELobbyType:
         k_ELobbyTypePrivate
         k_ELobbyTypeFriendsOnly
@@ -45,8 +44,8 @@ cdef extern from "steam/steam_api.h":
         k_EP2PSendReliable
         k_EP2PSendReliableWithBuffering
 
+    ctypedef unsigned long long SteamAPICall_t
 
-cdef extern from "steam/steam_api.h":
     cdef cppclass CGameID:
         uint32_t AppID()
 
