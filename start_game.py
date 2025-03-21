@@ -26,13 +26,16 @@ def main():
     try:
         steam = STEAMWORKS()
         steam.initialize()
-        
-        if steam.utils.isSteamRunning():
-            # The user is either logged in, or at least the Steam client is open
-            persona = steam.friends.getPersonaName()
-            print(f"✅ Steam is running! Logged in as {persona}")
+        steam.run_callbacks()         # Manually pump callbacks (sometimes needed per frame in older forks)
+
+        # Check if Steam is running
+        if steam.IsSteamRunning():
+            # If running, attempt to read the user's name via the Friends interface
+            persona = steam.GetPersonaName()
+            print(f"✅ Steam is running. Logged in as: {persona}")
         else:
-            print("❌ Steam is not running or user not logged in.")
+            print("❌ Steam client not running or user not logged on.")
+            #sys.exit(1)
     except Exception as e:
         print(f"❌ ERROR: SteamworksPy initialization failed.\n   {e}")
         sys.exit(1)
