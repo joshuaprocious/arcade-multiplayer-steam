@@ -34,8 +34,6 @@ def create_lobby(int lobby_type, int max_members):
     return matchmaking.CreateLobby(<ELobbyType>lobby_type, max_members)
 
 
-
-
 def get_num_lobby_members(uint64_t lobby_id):
     cdef CSteamID lid = CSteamID()
     (<unsigned long long*>(&lid))[0] = lobby_id
@@ -68,3 +66,23 @@ def read_p2p(int channel=0):
     py_data = PyBytes_FromStringAndSize(buffer, size)
     free(buffer)
     return py_data, remote_id.ConvertToUint64()
+
+def get_friend_count():
+    return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+
+def get_friend_by_index(int index):
+    sid = SteamFriends().GetFriendByIndex(index, 0)
+    return sid.ConvertToUint64()
+
+
+def get_friend_game_played(friend_id):
+    cdef uint32_t app_id
+    cdef uint64_t steam_id = friend_id
+    cdef CSteamID sid
+    (<uint64_t*>&sid)[0] = steam_id
+
+    cdef FriendGameInfo_t info
+    if SteamFriends().GetFriendGamePlayed(sid, &info):
+        return {"app_id": info.m_gameID.AppID()}
+    return None
+

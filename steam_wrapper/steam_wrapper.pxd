@@ -1,4 +1,6 @@
 from libc.stdint cimport uint32_t, uint64_t
+from libc.stdint cimport uint16_t
+
 from libc.stdlib cimport malloc, free
 ctypedef bint bool
 
@@ -42,3 +44,23 @@ cdef extern from "steam/steam_api.h":
         k_EP2PSendUnreliableNoDelay
         k_EP2PSendReliable
         k_EP2PSendReliableWithBuffering
+
+
+cdef extern from "steam/steam_api.h":
+    cdef cppclass CGameID:
+        uint32_t AppID()
+
+    
+    cdef struct FriendGameInfo_t:
+        CGameID m_gameID
+        uint32_t m_unGameIP
+        uint16_t m_usGamePort
+        uint16_t m_usQueryPort
+        CSteamID m_steamIDLobby
+
+    cdef cppclass ISteamFriends:
+        int GetFriendCount(int flags)
+        CSteamID GetFriendByIndex(int index, int flags)
+        bint GetFriendGamePlayed(CSteamID steamIDFriend, FriendGameInfo_t* pFriendGameInfo)
+
+    ISteamFriends* SteamFriends()

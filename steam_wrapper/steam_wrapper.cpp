@@ -1523,8 +1523,8 @@ static const char *__pyx_f[] = {
 
 /* #### Code section: numeric_typedefs ### */
 
-/* "steam_wrapper.pxd":3
- * from libc.stdint cimport uint32_t, uint64_t
+/* "steam_wrapper.pxd":5
+ * 
  * from libc.stdlib cimport malloc, free
  * ctypedef bint bool             # <<<<<<<<<<<<<<
  * 
@@ -2012,6 +2012,9 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value);
 
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint32_t(uint32_t value);
+
 /* FormatTypeName.proto */
 #if CYTHON_COMPILING_IN_LIMITED_API
 typedef PyObject *__Pyx_TypeName;
@@ -2089,22 +2092,26 @@ int __pyx_module_is_main_steam_wrapper = 0;
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_RuntimeError;
 /* #### Code section: string_decls ### */
-static const char __pyx_k__17[] = "?";
+static const char __pyx_k__22[] = "?";
 static const char __pyx_k_buf[] = "buf";
 static const char __pyx_k_lid[] = "lid";
 static const char __pyx_k_sid[] = "sid";
 static const char __pyx_k_data[] = "data";
+static const char __pyx_k_info[] = "info";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_size[] = "size";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_index[] = "index";
+static const char __pyx_k_app_id[] = "app_id";
 static const char __pyx_k_buffer[] = "buffer";
 static const char __pyx_k_channel[] = "channel";
 static const char __pyx_k_py_data[] = "py_data";
 static const char __pyx_k_lobby_id[] = "lobby_id";
 static const char __pyx_k_read_p2p[] = "read_p2p";
 static const char __pyx_k_send_p2p[] = "send_p2p";
+static const char __pyx_k_steam_id[] = "steam_id";
+static const char __pyx_k_friend_id[] = "friend_id";
 static const char __pyx_k_remote_id[] = "remote_id";
 static const char __pyx_k_send_type[] = "send_type";
 static const char __pyx_k_target_id[] = "target_id";
@@ -2118,11 +2125,14 @@ static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_run_callbacks[] = "run_callbacks";
 static const char __pyx_k_steam_wrapper[] = "steam_wrapper";
 static const char __pyx_k_shutdown_steam[] = "shutdown_steam";
+static const char __pyx_k_get_friend_count[] = "get_friend_count";
 static const char __pyx_k_steam_wrapper_pyx[] = "steam_wrapper.pyx";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_get_friend_by_index[] = "get_friend_by_index";
 static const char __pyx_k_SteamAPI_Init_failed[] = "SteamAPI_Init failed.";
 static const char __pyx_k_get_num_lobby_members[] = "get_num_lobby_members";
+static const char __pyx_k_get_friend_game_played[] = "get_friend_game_played";
 static const char __pyx_k_get_lobby_member_by_index[] = "get_lobby_member_by_index";
 /* #### Code section: decls ### */
 static PyObject *__pyx_pf_13steam_wrapper_init_steam(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
@@ -2134,6 +2144,9 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
 static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNUSED PyObject *__pyx_self, uint64_t __pyx_v_lobby_id, int __pyx_v_index); /* proto */
 static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__pyx_self, uint64_t __pyx_v_target_id, PyObject *__pyx_v_data, int __pyx_v_send_type, int __pyx_v_channel); /* proto */
 static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_channel); /* proto */
+static PyObject *__pyx_pf_13steam_wrapper_18get_friend_count(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index); /* proto */
+static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_friend_id); /* proto */
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 typedef struct {
@@ -2184,7 +2197,9 @@ typedef struct {
   #endif
   PyObject *__pyx_n_s_RuntimeError;
   PyObject *__pyx_kp_u_SteamAPI_Init_failed;
-  PyObject *__pyx_n_s__17;
+  PyObject *__pyx_n_s__22;
+  PyObject *__pyx_n_s_app_id;
+  PyObject *__pyx_n_u_app_id;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_n_s_buf;
   PyObject *__pyx_n_s_buffer;
@@ -2192,10 +2207,15 @@ typedef struct {
   PyObject *__pyx_n_s_cline_in_traceback;
   PyObject *__pyx_n_s_create_lobby;
   PyObject *__pyx_n_s_data;
+  PyObject *__pyx_n_s_friend_id;
+  PyObject *__pyx_n_s_get_friend_by_index;
+  PyObject *__pyx_n_s_get_friend_count;
+  PyObject *__pyx_n_s_get_friend_game_played;
   PyObject *__pyx_n_s_get_lobby_member_by_index;
   PyObject *__pyx_n_s_get_num_lobby_members;
   PyObject *__pyx_n_s_get_steam_id;
   PyObject *__pyx_n_s_index;
+  PyObject *__pyx_n_s_info;
   PyObject *__pyx_n_s_init_steam;
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_n_s_lid;
@@ -2213,6 +2233,7 @@ typedef struct {
   PyObject *__pyx_n_s_shutdown_steam;
   PyObject *__pyx_n_s_sid;
   PyObject *__pyx_n_s_size;
+  PyObject *__pyx_n_s_steam_id;
   PyObject *__pyx_n_s_steam_wrapper;
   PyObject *__pyx_kp_s_steam_wrapper_pyx;
   PyObject *__pyx_n_s_target_id;
@@ -2224,6 +2245,8 @@ typedef struct {
   PyObject *__pyx_tuple__11;
   PyObject *__pyx_tuple__13;
   PyObject *__pyx_tuple__15;
+  PyObject *__pyx_tuple__18;
+  PyObject *__pyx_tuple__20;
   PyObject *__pyx_codeobj__2;
   PyObject *__pyx_codeobj__3;
   PyObject *__pyx_codeobj__4;
@@ -2233,6 +2256,9 @@ typedef struct {
   PyObject *__pyx_codeobj__12;
   PyObject *__pyx_codeobj__14;
   PyObject *__pyx_codeobj__16;
+  PyObject *__pyx_codeobj__17;
+  PyObject *__pyx_codeobj__19;
+  PyObject *__pyx_codeobj__21;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2278,7 +2304,9 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_7cpython_4type_type);
   Py_CLEAR(clear_module_state->__pyx_n_s_RuntimeError);
   Py_CLEAR(clear_module_state->__pyx_kp_u_SteamAPI_Init_failed);
-  Py_CLEAR(clear_module_state->__pyx_n_s__17);
+  Py_CLEAR(clear_module_state->__pyx_n_s__22);
+  Py_CLEAR(clear_module_state->__pyx_n_s_app_id);
+  Py_CLEAR(clear_module_state->__pyx_n_u_app_id);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_n_s_buf);
   Py_CLEAR(clear_module_state->__pyx_n_s_buffer);
@@ -2286,10 +2314,15 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
   Py_CLEAR(clear_module_state->__pyx_n_s_create_lobby);
   Py_CLEAR(clear_module_state->__pyx_n_s_data);
+  Py_CLEAR(clear_module_state->__pyx_n_s_friend_id);
+  Py_CLEAR(clear_module_state->__pyx_n_s_get_friend_by_index);
+  Py_CLEAR(clear_module_state->__pyx_n_s_get_friend_count);
+  Py_CLEAR(clear_module_state->__pyx_n_s_get_friend_game_played);
   Py_CLEAR(clear_module_state->__pyx_n_s_get_lobby_member_by_index);
   Py_CLEAR(clear_module_state->__pyx_n_s_get_num_lobby_members);
   Py_CLEAR(clear_module_state->__pyx_n_s_get_steam_id);
   Py_CLEAR(clear_module_state->__pyx_n_s_index);
+  Py_CLEAR(clear_module_state->__pyx_n_s_info);
   Py_CLEAR(clear_module_state->__pyx_n_s_init_steam);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_n_s_lid);
@@ -2307,6 +2340,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_shutdown_steam);
   Py_CLEAR(clear_module_state->__pyx_n_s_sid);
   Py_CLEAR(clear_module_state->__pyx_n_s_size);
+  Py_CLEAR(clear_module_state->__pyx_n_s_steam_id);
   Py_CLEAR(clear_module_state->__pyx_n_s_steam_wrapper);
   Py_CLEAR(clear_module_state->__pyx_kp_s_steam_wrapper_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_target_id);
@@ -2318,6 +2352,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
   Py_CLEAR(clear_module_state->__pyx_tuple__13);
   Py_CLEAR(clear_module_state->__pyx_tuple__15);
+  Py_CLEAR(clear_module_state->__pyx_tuple__18);
+  Py_CLEAR(clear_module_state->__pyx_tuple__20);
   Py_CLEAR(clear_module_state->__pyx_codeobj__2);
   Py_CLEAR(clear_module_state->__pyx_codeobj__3);
   Py_CLEAR(clear_module_state->__pyx_codeobj__4);
@@ -2327,6 +2363,9 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_codeobj__12);
   Py_CLEAR(clear_module_state->__pyx_codeobj__14);
   Py_CLEAR(clear_module_state->__pyx_codeobj__16);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__17);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__21);
   return 0;
 }
 #endif
@@ -2350,7 +2389,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_7cpython_4type_type);
   Py_VISIT(traverse_module_state->__pyx_n_s_RuntimeError);
   Py_VISIT(traverse_module_state->__pyx_kp_u_SteamAPI_Init_failed);
-  Py_VISIT(traverse_module_state->__pyx_n_s__17);
+  Py_VISIT(traverse_module_state->__pyx_n_s__22);
+  Py_VISIT(traverse_module_state->__pyx_n_s_app_id);
+  Py_VISIT(traverse_module_state->__pyx_n_u_app_id);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_n_s_buf);
   Py_VISIT(traverse_module_state->__pyx_n_s_buffer);
@@ -2358,10 +2399,15 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
   Py_VISIT(traverse_module_state->__pyx_n_s_create_lobby);
   Py_VISIT(traverse_module_state->__pyx_n_s_data);
+  Py_VISIT(traverse_module_state->__pyx_n_s_friend_id);
+  Py_VISIT(traverse_module_state->__pyx_n_s_get_friend_by_index);
+  Py_VISIT(traverse_module_state->__pyx_n_s_get_friend_count);
+  Py_VISIT(traverse_module_state->__pyx_n_s_get_friend_game_played);
   Py_VISIT(traverse_module_state->__pyx_n_s_get_lobby_member_by_index);
   Py_VISIT(traverse_module_state->__pyx_n_s_get_num_lobby_members);
   Py_VISIT(traverse_module_state->__pyx_n_s_get_steam_id);
   Py_VISIT(traverse_module_state->__pyx_n_s_index);
+  Py_VISIT(traverse_module_state->__pyx_n_s_info);
   Py_VISIT(traverse_module_state->__pyx_n_s_init_steam);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_n_s_lid);
@@ -2379,6 +2425,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_shutdown_steam);
   Py_VISIT(traverse_module_state->__pyx_n_s_sid);
   Py_VISIT(traverse_module_state->__pyx_n_s_size);
+  Py_VISIT(traverse_module_state->__pyx_n_s_steam_id);
   Py_VISIT(traverse_module_state->__pyx_n_s_steam_wrapper);
   Py_VISIT(traverse_module_state->__pyx_kp_s_steam_wrapper_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_target_id);
@@ -2390,6 +2437,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
   Py_VISIT(traverse_module_state->__pyx_tuple__13);
   Py_VISIT(traverse_module_state->__pyx_tuple__15);
+  Py_VISIT(traverse_module_state->__pyx_tuple__18);
+  Py_VISIT(traverse_module_state->__pyx_tuple__20);
   Py_VISIT(traverse_module_state->__pyx_codeobj__2);
   Py_VISIT(traverse_module_state->__pyx_codeobj__3);
   Py_VISIT(traverse_module_state->__pyx_codeobj__4);
@@ -2399,6 +2448,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_codeobj__12);
   Py_VISIT(traverse_module_state->__pyx_codeobj__14);
   Py_VISIT(traverse_module_state->__pyx_codeobj__16);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__17);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__21);
   return 0;
 }
 #endif
@@ -2450,7 +2502,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #define __pyx_n_s_RuntimeError __pyx_mstate_global->__pyx_n_s_RuntimeError
 #define __pyx_kp_u_SteamAPI_Init_failed __pyx_mstate_global->__pyx_kp_u_SteamAPI_Init_failed
-#define __pyx_n_s__17 __pyx_mstate_global->__pyx_n_s__17
+#define __pyx_n_s__22 __pyx_mstate_global->__pyx_n_s__22
+#define __pyx_n_s_app_id __pyx_mstate_global->__pyx_n_s_app_id
+#define __pyx_n_u_app_id __pyx_mstate_global->__pyx_n_u_app_id
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_n_s_buf __pyx_mstate_global->__pyx_n_s_buf
 #define __pyx_n_s_buffer __pyx_mstate_global->__pyx_n_s_buffer
@@ -2458,10 +2512,15 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
 #define __pyx_n_s_create_lobby __pyx_mstate_global->__pyx_n_s_create_lobby
 #define __pyx_n_s_data __pyx_mstate_global->__pyx_n_s_data
+#define __pyx_n_s_friend_id __pyx_mstate_global->__pyx_n_s_friend_id
+#define __pyx_n_s_get_friend_by_index __pyx_mstate_global->__pyx_n_s_get_friend_by_index
+#define __pyx_n_s_get_friend_count __pyx_mstate_global->__pyx_n_s_get_friend_count
+#define __pyx_n_s_get_friend_game_played __pyx_mstate_global->__pyx_n_s_get_friend_game_played
 #define __pyx_n_s_get_lobby_member_by_index __pyx_mstate_global->__pyx_n_s_get_lobby_member_by_index
 #define __pyx_n_s_get_num_lobby_members __pyx_mstate_global->__pyx_n_s_get_num_lobby_members
 #define __pyx_n_s_get_steam_id __pyx_mstate_global->__pyx_n_s_get_steam_id
 #define __pyx_n_s_index __pyx_mstate_global->__pyx_n_s_index
+#define __pyx_n_s_info __pyx_mstate_global->__pyx_n_s_info
 #define __pyx_n_s_init_steam __pyx_mstate_global->__pyx_n_s_init_steam
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_n_s_lid __pyx_mstate_global->__pyx_n_s_lid
@@ -2479,6 +2538,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_shutdown_steam __pyx_mstate_global->__pyx_n_s_shutdown_steam
 #define __pyx_n_s_sid __pyx_mstate_global->__pyx_n_s_sid
 #define __pyx_n_s_size __pyx_mstate_global->__pyx_n_s_size
+#define __pyx_n_s_steam_id __pyx_mstate_global->__pyx_n_s_steam_id
 #define __pyx_n_s_steam_wrapper __pyx_mstate_global->__pyx_n_s_steam_wrapper
 #define __pyx_kp_s_steam_wrapper_pyx __pyx_mstate_global->__pyx_kp_s_steam_wrapper_pyx
 #define __pyx_n_s_target_id __pyx_mstate_global->__pyx_n_s_target_id
@@ -2490,6 +2550,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
 #define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
 #define __pyx_tuple__15 __pyx_mstate_global->__pyx_tuple__15
+#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
+#define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
 #define __pyx_codeobj__2 __pyx_mstate_global->__pyx_codeobj__2
 #define __pyx_codeobj__3 __pyx_mstate_global->__pyx_codeobj__3
 #define __pyx_codeobj__4 __pyx_mstate_global->__pyx_codeobj__4
@@ -2499,6 +2561,9 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
 #define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
 #define __pyx_codeobj__16 __pyx_mstate_global->__pyx_codeobj__16
+#define __pyx_codeobj__17 __pyx_mstate_global->__pyx_codeobj__17
+#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
+#define __pyx_codeobj__21 __pyx_mstate_global->__pyx_codeobj__21
 /* #### Code section: module_code ### */
 
 /* "steam_wrapper.pyx":15
@@ -2958,7 +3023,7 @@ static PyObject *__pyx_pf_13steam_wrapper_8create_lobby(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":39
+/* "steam_wrapper.pyx":37
  * 
  * 
  * def get_num_lobby_members(uint64_t lobby_id):             # <<<<<<<<<<<<<<
@@ -3019,23 +3084,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 37, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_num_lobby_members") < 0)) __PYX_ERR(0, 39, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_num_lobby_members") < 0)) __PYX_ERR(0, 37, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_lobby_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_lobby_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L3_error)
+    __pyx_v_lobby_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_lobby_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 37, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_num_lobby_members", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 39, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_num_lobby_members", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 37, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3072,7 +3137,7 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_num_lobby_members", 1);
 
-  /* "steam_wrapper.pyx":40
+  /* "steam_wrapper.pyx":38
  * 
  * def get_num_lobby_members(uint64_t lobby_id):
  *     cdef CSteamID lid = CSteamID()             # <<<<<<<<<<<<<<
@@ -3081,7 +3146,7 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
  */
   __pyx_v_lid = CSteamID();
 
-  /* "steam_wrapper.pyx":41
+  /* "steam_wrapper.pyx":39
  * def get_num_lobby_members(uint64_t lobby_id):
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id             # <<<<<<<<<<<<<<
@@ -3090,7 +3155,7 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
  */
   (((unsigned PY_LONG_LONG *)(&__pyx_v_lid))[0]) = __pyx_v_lobby_id;
 
-  /* "steam_wrapper.pyx":42
+  /* "steam_wrapper.pyx":40
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  *     return matchmaking.GetNumLobbyMembers(lid)             # <<<<<<<<<<<<<<
@@ -3098,13 +3163,13 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_13steam_wrapper_matchmaking->GetNumLobbyMembers(__pyx_v_lid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_13steam_wrapper_matchmaking->GetNumLobbyMembers(__pyx_v_lid)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":39
+  /* "steam_wrapper.pyx":37
  * 
  * 
  * def get_num_lobby_members(uint64_t lobby_id):             # <<<<<<<<<<<<<<
@@ -3123,7 +3188,7 @@ static PyObject *__pyx_pf_13steam_wrapper_10get_num_lobby_members(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":44
+/* "steam_wrapper.pyx":42
  *     return matchmaking.GetNumLobbyMembers(lid)
  * 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):             # <<<<<<<<<<<<<<
@@ -3187,7 +3252,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -3195,14 +3260,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("get_lobby_member_by_index", 1, 2, 2, 1); __PYX_ERR(0, 44, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_lobby_member_by_index", 1, 2, 2, 1); __PYX_ERR(0, 42, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_lobby_member_by_index") < 0)) __PYX_ERR(0, 44, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_lobby_member_by_index") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -3210,12 +3275,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
     }
-    __pyx_v_lobby_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_lobby_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
-    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
+    __pyx_v_lobby_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_lobby_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_lobby_member_by_index", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 44, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_lobby_member_by_index", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 42, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3252,7 +3317,7 @@ static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_lobby_member_by_index", 1);
 
-  /* "steam_wrapper.pyx":45
+  /* "steam_wrapper.pyx":43
  * 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):
  *     cdef CSteamID lid = CSteamID()             # <<<<<<<<<<<<<<
@@ -3261,7 +3326,7 @@ static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNU
  */
   __pyx_v_lid = CSteamID();
 
-  /* "steam_wrapper.pyx":46
+  /* "steam_wrapper.pyx":44
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id             # <<<<<<<<<<<<<<
@@ -3270,7 +3335,7 @@ static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNU
  */
   (((unsigned PY_LONG_LONG *)(&__pyx_v_lid))[0]) = __pyx_v_lobby_id;
 
-  /* "steam_wrapper.pyx":47
+  /* "steam_wrapper.pyx":45
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  *     return matchmaking.GetLobbyMemberByIndex(lid, index).ConvertToUint64()             # <<<<<<<<<<<<<<
@@ -3278,13 +3343,13 @@ static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNU
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_13steam_wrapper_matchmaking->GetLobbyMemberByIndex(__pyx_v_lid, __pyx_v_index).ConvertToUint64()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_13steam_wrapper_matchmaking->GetLobbyMemberByIndex(__pyx_v_lid, __pyx_v_index).ConvertToUint64()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":44
+  /* "steam_wrapper.pyx":42
  *     return matchmaking.GetNumLobbyMembers(lid)
  * 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):             # <<<<<<<<<<<<<<
@@ -3303,7 +3368,7 @@ static PyObject *__pyx_pf_13steam_wrapper_12get_lobby_member_by_index(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":49
+/* "steam_wrapper.pyx":47
  *     return matchmaking.GetLobbyMemberByIndex(lid, index).ConvertToUint64()
  * 
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):             # <<<<<<<<<<<<<<
@@ -3373,7 +3438,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -3381,28 +3446,28 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("send_p2p", 0, 2, 4, 1); __PYX_ERR(0, 49, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("send_p2p", 0, 2, 4, 1); __PYX_ERR(0, 47, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_send_type);
           if (value) { values[2] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_channel);
           if (value) { values[3] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "send_p2p") < 0)) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "send_p2p") < 0)) __PYX_ERR(0, 47, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -3416,22 +3481,22 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_target_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_target_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+    __pyx_v_target_id = __Pyx_PyInt_As_uint64_t(values[0]); if (unlikely((__pyx_v_target_id == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
     __pyx_v_data = ((PyObject*)values[1]);
     if (values[2]) {
-      __pyx_v_send_type = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_send_type == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+      __pyx_v_send_type = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_send_type == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
     } else {
       __pyx_v_send_type = ((int)((int)1));
     }
     if (values[3]) {
-      __pyx_v_channel = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_channel == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
+      __pyx_v_channel = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_channel == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
     } else {
       __pyx_v_channel = ((int)((int)0));
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("send_p2p", 0, 2, 4, __pyx_nargs); __PYX_ERR(0, 49, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("send_p2p", 0, 2, 4, __pyx_nargs); __PYX_ERR(0, 47, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3445,7 +3510,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_data), (&PyBytes_Type), 1, "data", 1))) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_data), (&PyBytes_Type), 1, "data", 1))) __PYX_ERR(0, 47, __pyx_L1_error)
   __pyx_r = __pyx_pf_13steam_wrapper_14send_p2p(__pyx_self, __pyx_v_target_id, __pyx_v_data, __pyx_v_send_type, __pyx_v_channel);
 
   /* function exit code */
@@ -3476,7 +3541,7 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("send_p2p", 1);
 
-  /* "steam_wrapper.pyx":50
+  /* "steam_wrapper.pyx":48
  * 
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):
  *     cdef CSteamID sid = CSteamID()             # <<<<<<<<<<<<<<
@@ -3485,7 +3550,7 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
  */
   __pyx_v_sid = CSteamID();
 
-  /* "steam_wrapper.pyx":51
+  /* "steam_wrapper.pyx":49
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):
  *     cdef CSteamID sid = CSteamID()
  *     (<uint64_t*>(&sid))[0] = target_id             # <<<<<<<<<<<<<<
@@ -3494,7 +3559,7 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
  */
   (((uint64_t *)(&__pyx_v_sid))[0]) = __pyx_v_target_id;
 
-  /* "steam_wrapper.pyx":53
+  /* "steam_wrapper.pyx":51
  *     (<uint64_t*>(&sid))[0] = target_id
  * 
  *     cdef const char* buf = data             # <<<<<<<<<<<<<<
@@ -3503,12 +3568,12 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
  */
   if (unlikely(__pyx_v_data == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-    __PYX_ERR(0, 53, __pyx_L1_error)
+    __PYX_ERR(0, 51, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyBytes_AsString(__pyx_v_data); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBytes_AsString(__pyx_v_data); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
   __pyx_v_buf = __pyx_t_1;
 
-  /* "steam_wrapper.pyx":54
+  /* "steam_wrapper.pyx":52
  * 
  *     cdef const char* buf = data
  *     return networking.SendP2PPacket(sid, <const void*>buf, len(data), <EP2PSend>send_type, channel)             # <<<<<<<<<<<<<<
@@ -3518,16 +3583,16 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_data == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 54, __pyx_L1_error)
+    __PYX_ERR(0, 52, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyBytes_GET_SIZE(__pyx_v_data); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 54, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_13steam_wrapper_networking->SendP2PPacket(__pyx_v_sid, ((void const *)__pyx_v_buf), __pyx_t_2, ((enum EP2PSend)__pyx_v_send_type), __pyx_v_channel)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_GET_SIZE(__pyx_v_data); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_13steam_wrapper_networking->SendP2PPacket(__pyx_v_sid, ((void const *)__pyx_v_buf), __pyx_t_2, ((enum EP2PSend)__pyx_v_send_type), __pyx_v_channel)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":49
+  /* "steam_wrapper.pyx":47
  *     return matchmaking.GetLobbyMemberByIndex(lid, index).ConvertToUint64()
  * 
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):             # <<<<<<<<<<<<<<
@@ -3546,7 +3611,7 @@ static PyObject *__pyx_pf_13steam_wrapper_14send_p2p(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "steam_wrapper.pyx":57
+/* "steam_wrapper.pyx":55
  * 
  * 
  * def read_p2p(int channel=0):             # <<<<<<<<<<<<<<
@@ -3606,12 +3671,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_channel);
           if (value) { values[0] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "read_p2p") < 0)) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "read_p2p") < 0)) __PYX_ERR(0, 55, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -3622,14 +3687,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       }
     }
     if (values[0]) {
-      __pyx_v_channel = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_channel == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L3_error)
+      __pyx_v_channel = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_channel == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L3_error)
     } else {
       __pyx_v_channel = ((int)((int)0));
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read_p2p", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read_p2p", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 55, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3671,7 +3736,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("read_p2p", 1);
 
-  /* "steam_wrapper.pyx":61
+  /* "steam_wrapper.pyx":59
  * 
  *     cdef CSteamID remote_id
  *     if not networking.IsP2PPacketAvailable(&size, channel):             # <<<<<<<<<<<<<<
@@ -3681,7 +3746,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
   __pyx_t_1 = (!(__pyx_v_13steam_wrapper_networking->IsP2PPacketAvailable((&__pyx_v_size), __pyx_v_channel) != 0));
   if (__pyx_t_1) {
 
-    /* "steam_wrapper.pyx":62
+    /* "steam_wrapper.pyx":60
  *     cdef CSteamID remote_id
  *     if not networking.IsP2PPacketAvailable(&size, channel):
  *         return None             # <<<<<<<<<<<<<<
@@ -3692,7 +3757,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "steam_wrapper.pyx":61
+    /* "steam_wrapper.pyx":59
  * 
  *     cdef CSteamID remote_id
  *     if not networking.IsP2PPacketAvailable(&size, channel):             # <<<<<<<<<<<<<<
@@ -3701,7 +3766,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "steam_wrapper.pyx":64
+  /* "steam_wrapper.pyx":62
  *         return None
  * 
  *     cdef char* buffer = <char*>malloc(size)             # <<<<<<<<<<<<<<
@@ -3710,7 +3775,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
  */
   __pyx_v_buffer = ((char *)malloc(__pyx_v_size));
 
-  /* "steam_wrapper.pyx":65
+  /* "steam_wrapper.pyx":63
  * 
  *     cdef char* buffer = <char*>malloc(size)
  *     if not networking.ReadP2PPacket(buffer, size, &size, &remote_id, channel):             # <<<<<<<<<<<<<<
@@ -3720,7 +3785,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
   __pyx_t_1 = (!(__pyx_v_13steam_wrapper_networking->ReadP2PPacket(__pyx_v_buffer, __pyx_v_size, (&__pyx_v_size), (&__pyx_v_remote_id), __pyx_v_channel) != 0));
   if (__pyx_t_1) {
 
-    /* "steam_wrapper.pyx":66
+    /* "steam_wrapper.pyx":64
  *     cdef char* buffer = <char*>malloc(size)
  *     if not networking.ReadP2PPacket(buffer, size, &size, &remote_id, channel):
  *         return None             # <<<<<<<<<<<<<<
@@ -3731,7 +3796,7 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "steam_wrapper.pyx":65
+    /* "steam_wrapper.pyx":63
  * 
  *     cdef char* buffer = <char*>malloc(size)
  *     if not networking.ReadP2PPacket(buffer, size, &size, &remote_id, channel):             # <<<<<<<<<<<<<<
@@ -3740,47 +3805,50 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "steam_wrapper.pyx":68
+  /* "steam_wrapper.pyx":66
  *         return None
  * 
  *     py_data = PyBytes_FromStringAndSize(buffer, size)             # <<<<<<<<<<<<<<
  *     free(buffer)
  *     return py_data, remote_id.ConvertToUint64()
  */
-  __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_buffer, __pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_buffer, __pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_py_data = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "steam_wrapper.pyx":69
+  /* "steam_wrapper.pyx":67
  * 
  *     py_data = PyBytes_FromStringAndSize(buffer, size)
  *     free(buffer)             # <<<<<<<<<<<<<<
  *     return py_data, remote_id.ConvertToUint64()
+ * 
  */
   free(__pyx_v_buffer);
 
-  /* "steam_wrapper.pyx":70
+  /* "steam_wrapper.pyx":68
  *     py_data = PyBytes_FromStringAndSize(buffer, size)
  *     free(buffer)
  *     return py_data, remote_id.ConvertToUint64()             # <<<<<<<<<<<<<<
+ * 
+ * def get_friend_count():
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_remote_id.ConvertToUint64()); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_remote_id.ConvertToUint64()); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_py_data);
   __Pyx_GIVEREF(__pyx_v_py_data);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_py_data)) __PYX_ERR(0, 70, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_py_data)) __PYX_ERR(0, 68, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "steam_wrapper.pyx":57
+  /* "steam_wrapper.pyx":55
  * 
  * 
  * def read_p2p(int channel=0):             # <<<<<<<<<<<<<<
@@ -3796,6 +3864,433 @@ static PyObject *__pyx_pf_13steam_wrapper_16read_p2p(CYTHON_UNUSED PyObject *__p
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_py_data);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "steam_wrapper.pyx":70
+ *     return py_data, remote_id.ConvertToUint64()
+ * 
+ * def get_friend_count():             # <<<<<<<<<<<<<<
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_13steam_wrapper_19get_friend_count(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyMethodDef __pyx_mdef_13steam_wrapper_19get_friend_count = {"get_friend_count", (PyCFunction)__pyx_pw_13steam_wrapper_19get_friend_count, METH_NOARGS, 0};
+static PyObject *__pyx_pw_13steam_wrapper_19get_friend_count(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get_friend_count (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_13steam_wrapper_18get_friend_count(__pyx_self);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_13steam_wrapper_18get_friend_count(CYTHON_UNUSED PyObject *__pyx_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get_friend_count", 1);
+
+  /* "steam_wrapper.pyx":71
+ * 
+ * def get_friend_count():
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate             # <<<<<<<<<<<<<<
+ * 
+ * def get_friend_by_index(int index):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(SteamFriends()->GetFriendCount(0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "steam_wrapper.pyx":70
+ *     return py_data, remote_id.ConvertToUint64()
+ * 
+ * def get_friend_count():             # <<<<<<<<<<<<<<
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("steam_wrapper.get_friend_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "steam_wrapper.pyx":73
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)
+ *     return sid.ConvertToUint64()
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_13steam_wrapper_21get_friend_by_index(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_13steam_wrapper_21get_friend_by_index = {"get_friend_by_index", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13steam_wrapper_21get_friend_by_index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_13steam_wrapper_21get_friend_by_index(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  int __pyx_v_index;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get_friend_by_index (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_index,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_index)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_by_index") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+    }
+    __pyx_v_index = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("get_friend_by_index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 73, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("steam_wrapper.get_friend_by_index", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_13steam_wrapper_20get_friend_by_index(__pyx_self, __pyx_v_index);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_13steam_wrapper_20get_friend_by_index(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_index) {
+  CSteamID __pyx_v_sid;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get_friend_by_index", 1);
+
+  /* "steam_wrapper.pyx":74
+ * 
+ * def get_friend_by_index(int index):
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)             # <<<<<<<<<<<<<<
+ *     return sid.ConvertToUint64()
+ * 
+ */
+  __pyx_v_sid = SteamFriends()->GetFriendByIndex(__pyx_v_index, 0);
+
+  /* "steam_wrapper.pyx":75
+ * def get_friend_by_index(int index):
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)
+ *     return sid.ConvertToUint64()             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_sid.ConvertToUint64()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "steam_wrapper.pyx":73
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)
+ *     return sid.ConvertToUint64()
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("steam_wrapper.get_friend_by_index", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "steam_wrapper.pyx":78
+ * 
+ * 
+ * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
+ *     cdef uint32_t app_id
+ *     cdef uint64_t steam_id = friend_id
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_13steam_wrapper_23get_friend_game_played(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_13steam_wrapper_23get_friend_game_played = {"get_friend_game_played", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13steam_wrapper_23get_friend_game_played, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_13steam_wrapper_23get_friend_game_played(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_friend_id = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get_friend_game_played (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_friend_id,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_friend_id)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 78, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "get_friend_game_played") < 0)) __PYX_ERR(0, 78, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+    }
+    __pyx_v_friend_id = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("get_friend_game_played", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 78, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("steam_wrapper.get_friend_game_played", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_13steam_wrapper_22get_friend_game_played(__pyx_self, __pyx_v_friend_id);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_13steam_wrapper_22get_friend_game_played(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_friend_id) {
+  uint64_t __pyx_v_steam_id;
+  CSteamID __pyx_v_sid;
+  struct FriendGameInfo_t __pyx_v_info;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  uint64_t __pyx_t_1;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get_friend_game_played", 1);
+
+  /* "steam_wrapper.pyx":80
+ * def get_friend_game_played(friend_id):
+ *     cdef uint32_t app_id
+ *     cdef uint64_t steam_id = friend_id             # <<<<<<<<<<<<<<
+ *     cdef CSteamID sid
+ *     (<uint64_t*>&sid)[0] = steam_id
+ */
+  __pyx_t_1 = __Pyx_PyInt_As_uint64_t(__pyx_v_friend_id); if (unlikely((__pyx_t_1 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_v_steam_id = __pyx_t_1;
+
+  /* "steam_wrapper.pyx":82
+ *     cdef uint64_t steam_id = friend_id
+ *     cdef CSteamID sid
+ *     (<uint64_t*>&sid)[0] = steam_id             # <<<<<<<<<<<<<<
+ * 
+ *     cdef FriendGameInfo_t info
+ */
+  (((uint64_t *)(&__pyx_v_sid))[0]) = __pyx_v_steam_id;
+
+  /* "steam_wrapper.pyx":85
+ * 
+ *     cdef FriendGameInfo_t info
+ *     if SteamFriends().GetFriendGamePlayed(sid, &info):             # <<<<<<<<<<<<<<
+ *         return {"app_id": info.m_gameID.AppID()}
+ *     return None
+ */
+  __pyx_t_2 = SteamFriends()->GetFriendGamePlayed(__pyx_v_sid, (&__pyx_v_info));
+  if (__pyx_t_2) {
+
+    /* "steam_wrapper.pyx":86
+ *     cdef FriendGameInfo_t info
+ *     if SteamFriends().GetFriendGamePlayed(sid, &info):
+ *         return {"app_id": info.m_gameID.AppID()}             # <<<<<<<<<<<<<<
+ *     return None
+ * 
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_info.m_gameID.AppID()); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_app_id, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_r = __pyx_t_3;
+    __pyx_t_3 = 0;
+    goto __pyx_L0;
+
+    /* "steam_wrapper.pyx":85
+ * 
+ *     cdef FriendGameInfo_t info
+ *     if SteamFriends().GetFriendGamePlayed(sid, &info):             # <<<<<<<<<<<<<<
+ *         return {"app_id": info.m_gameID.AppID()}
+ *     return None
+ */
+  }
+
+  /* "steam_wrapper.pyx":87
+ *     if SteamFriends().GetFriendGamePlayed(sid, &info):
+ *         return {"app_id": info.m_gameID.AppID()}
+ *     return None             # <<<<<<<<<<<<<<
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+
+  /* "steam_wrapper.pyx":78
+ * 
+ * 
+ * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
+ *     cdef uint32_t app_id
+ *     cdef uint64_t steam_id = friend_id
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("steam_wrapper.get_friend_game_played", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -3819,7 +4314,9 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
   __Pyx_StringTabEntry __pyx_string_tab[] = {
     {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
     {&__pyx_kp_u_SteamAPI_Init_failed, __pyx_k_SteamAPI_Init_failed, sizeof(__pyx_k_SteamAPI_Init_failed), 0, 1, 0, 0},
-    {&__pyx_n_s__17, __pyx_k__17, sizeof(__pyx_k__17), 0, 0, 1, 1},
+    {&__pyx_n_s__22, __pyx_k__22, sizeof(__pyx_k__22), 0, 0, 1, 1},
+    {&__pyx_n_s_app_id, __pyx_k_app_id, sizeof(__pyx_k_app_id), 0, 0, 1, 1},
+    {&__pyx_n_u_app_id, __pyx_k_app_id, sizeof(__pyx_k_app_id), 0, 1, 0, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_n_s_buf, __pyx_k_buf, sizeof(__pyx_k_buf), 0, 0, 1, 1},
     {&__pyx_n_s_buffer, __pyx_k_buffer, sizeof(__pyx_k_buffer), 0, 0, 1, 1},
@@ -3827,10 +4324,15 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
     {&__pyx_n_s_create_lobby, __pyx_k_create_lobby, sizeof(__pyx_k_create_lobby), 0, 0, 1, 1},
     {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
+    {&__pyx_n_s_friend_id, __pyx_k_friend_id, sizeof(__pyx_k_friend_id), 0, 0, 1, 1},
+    {&__pyx_n_s_get_friend_by_index, __pyx_k_get_friend_by_index, sizeof(__pyx_k_get_friend_by_index), 0, 0, 1, 1},
+    {&__pyx_n_s_get_friend_count, __pyx_k_get_friend_count, sizeof(__pyx_k_get_friend_count), 0, 0, 1, 1},
+    {&__pyx_n_s_get_friend_game_played, __pyx_k_get_friend_game_played, sizeof(__pyx_k_get_friend_game_played), 0, 0, 1, 1},
     {&__pyx_n_s_get_lobby_member_by_index, __pyx_k_get_lobby_member_by_index, sizeof(__pyx_k_get_lobby_member_by_index), 0, 0, 1, 1},
     {&__pyx_n_s_get_num_lobby_members, __pyx_k_get_num_lobby_members, sizeof(__pyx_k_get_num_lobby_members), 0, 0, 1, 1},
     {&__pyx_n_s_get_steam_id, __pyx_k_get_steam_id, sizeof(__pyx_k_get_steam_id), 0, 0, 1, 1},
     {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
+    {&__pyx_n_s_info, __pyx_k_info, sizeof(__pyx_k_info), 0, 0, 1, 1},
     {&__pyx_n_s_init_steam, __pyx_k_init_steam, sizeof(__pyx_k_init_steam), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_n_s_lid, __pyx_k_lid, sizeof(__pyx_k_lid), 0, 0, 1, 1},
@@ -3848,6 +4350,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_shutdown_steam, __pyx_k_shutdown_steam, sizeof(__pyx_k_shutdown_steam), 0, 0, 1, 1},
     {&__pyx_n_s_sid, __pyx_k_sid, sizeof(__pyx_k_sid), 0, 0, 1, 1},
     {&__pyx_n_s_size, __pyx_k_size, sizeof(__pyx_k_size), 0, 0, 1, 1},
+    {&__pyx_n_s_steam_id, __pyx_k_steam_id, sizeof(__pyx_k_steam_id), 0, 0, 1, 1},
     {&__pyx_n_s_steam_wrapper, __pyx_k_steam_wrapper, sizeof(__pyx_k_steam_wrapper), 0, 0, 1, 1},
     {&__pyx_kp_s_steam_wrapper_pyx, __pyx_k_steam_wrapper_pyx, sizeof(__pyx_k_steam_wrapper_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_target_id, __pyx_k_target_id, sizeof(__pyx_k_target_id), 0, 0, 1, 1},
@@ -3931,53 +4434,86 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__7);
   __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_create_lobby, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 33, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":39
+  /* "steam_wrapper.pyx":37
  * 
  * 
  * def get_num_lobby_members(uint64_t lobby_id):             # <<<<<<<<<<<<<<
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_n_s_lobby_id, __pyx_n_s_lid); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_n_s_lobby_id, __pyx_n_s_lid); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_num_lobby_members, 39, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_num_lobby_members, 37, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 37, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":44
+  /* "steam_wrapper.pyx":42
  *     return matchmaking.GetNumLobbyMembers(lid)
  * 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):             # <<<<<<<<<<<<<<
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  */
-  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_lobby_id, __pyx_n_s_index, __pyx_n_s_lid); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_lobby_id, __pyx_n_s_index, __pyx_n_s_lid); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_lobby_member_by_index, 44, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_lobby_member_by_index, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 42, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":49
+  /* "steam_wrapper.pyx":47
  *     return matchmaking.GetLobbyMemberByIndex(lid, index).ConvertToUint64()
  * 
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):             # <<<<<<<<<<<<<<
  *     cdef CSteamID sid = CSteamID()
  *     (<uint64_t*>(&sid))[0] = target_id
  */
-  __pyx_tuple__13 = PyTuple_Pack(6, __pyx_n_s_target_id, __pyx_n_s_data, __pyx_n_s_send_type, __pyx_n_s_channel, __pyx_n_s_sid, __pyx_n_s_buf); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(6, __pyx_n_s_target_id, __pyx_n_s_data, __pyx_n_s_send_type, __pyx_n_s_channel, __pyx_n_s_sid, __pyx_n_s_buf); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_send_p2p, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_send_p2p, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 47, __pyx_L1_error)
 
-  /* "steam_wrapper.pyx":57
+  /* "steam_wrapper.pyx":55
  * 
  * 
  * def read_p2p(int channel=0):             # <<<<<<<<<<<<<<
  *     cdef uint32_t size
  * 
  */
-  __pyx_tuple__15 = PyTuple_Pack(5, __pyx_n_s_channel, __pyx_n_s_size, __pyx_n_s_remote_id, __pyx_n_s_buffer, __pyx_n_s_py_data); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(5, __pyx_n_s_channel, __pyx_n_s_size, __pyx_n_s_remote_id, __pyx_n_s_buffer, __pyx_n_s_py_data); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_read_p2p, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_read_p2p, 55, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 55, __pyx_L1_error)
+
+  /* "steam_wrapper.pyx":70
+ *     return py_data, remote_id.ConvertToUint64()
+ * 
+ * def get_friend_count():             # <<<<<<<<<<<<<<
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ */
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_count, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 70, __pyx_L1_error)
+
+  /* "steam_wrapper.pyx":73
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)
+ *     return sid.ConvertToUint64()
+ */
+  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_n_s_index, __pyx_n_s_sid); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_by_index, 73, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 73, __pyx_L1_error)
+
+  /* "steam_wrapper.pyx":78
+ * 
+ * 
+ * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
+ *     cdef uint32_t app_id
+ *     cdef uint64_t steam_id = friend_id
+ */
+  __pyx_tuple__20 = PyTuple_Pack(5, __pyx_n_s_friend_id, __pyx_n_s_app_id, __pyx_n_s_steam_id, __pyx_n_s_sid, __pyx_n_s_info); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_steam_wrapper_pyx, __pyx_n_s_get_friend_game_played, 78, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4450,75 +4986,111 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_create_lobby, __pyx_t_2) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "steam_wrapper.pyx":39
+  /* "steam_wrapper.pyx":37
  * 
  * 
  * def get_num_lobby_members(uint64_t lobby_id):             # <<<<<<<<<<<<<<
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_11get_num_lobby_members, 0, __pyx_n_s_get_num_lobby_members, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_11get_num_lobby_members, 0, __pyx_n_s_get_num_lobby_members, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_num_lobby_members, __pyx_t_2) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_num_lobby_members, __pyx_t_2) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "steam_wrapper.pyx":44
+  /* "steam_wrapper.pyx":42
  *     return matchmaking.GetNumLobbyMembers(lid)
  * 
  * def get_lobby_member_by_index(uint64_t lobby_id, int index):             # <<<<<<<<<<<<<<
  *     cdef CSteamID lid = CSteamID()
  *     (<unsigned long long*>(&lid))[0] = lobby_id
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_13get_lobby_member_by_index, 0, __pyx_n_s_get_lobby_member_by_index, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_13get_lobby_member_by_index, 0, __pyx_n_s_get_lobby_member_by_index, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_lobby_member_by_index, __pyx_t_2) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_lobby_member_by_index, __pyx_t_2) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "steam_wrapper.pyx":49
+  /* "steam_wrapper.pyx":47
  *     return matchmaking.GetLobbyMemberByIndex(lid, index).ConvertToUint64()
  * 
  * def send_p2p(uint64_t target_id, bytes data, int send_type=1, int channel=0):             # <<<<<<<<<<<<<<
  *     cdef CSteamID sid = CSteamID()
  *     (<uint64_t*>(&sid))[0] = target_id
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(((int)1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(((int)1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_15send_p2p, 0, __pyx_n_s_send_p2p, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_15send_p2p, 0, __pyx_n_s_send_p2p, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_send_p2p, __pyx_t_3) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_send_p2p, __pyx_t_3) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "steam_wrapper.pyx":57
+  /* "steam_wrapper.pyx":55
  * 
  * 
  * def read_p2p(int channel=0):             # <<<<<<<<<<<<<<
  *     cdef uint32_t size
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(((int)0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_17read_p2p, 0, __pyx_n_s_read_p2p, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_17read_p2p, 0, __pyx_n_s_read_p2p, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_p2p, __pyx_t_3) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_p2p, __pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "steam_wrapper.pyx":70
+ *     return py_data, remote_id.ConvertToUint64()
+ * 
+ * def get_friend_count():             # <<<<<<<<<<<<<<
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_19get_friend_count, 0, __pyx_n_s_get_friend_count, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_count, __pyx_t_3) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "steam_wrapper.pyx":73
+ *     return SteamFriends().GetFriendCount(0)  # 0 = k_EFriendFlagImmediate
+ * 
+ * def get_friend_by_index(int index):             # <<<<<<<<<<<<<<
+ *     sid = SteamFriends().GetFriendByIndex(index, 0)
+ *     return sid.ConvertToUint64()
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_21get_friend_by_index, 0, __pyx_n_s_get_friend_by_index, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_by_index, __pyx_t_3) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "steam_wrapper.pyx":78
+ * 
+ * 
+ * def get_friend_game_played(friend_id):             # <<<<<<<<<<<<<<
+ *     cdef uint32_t app_id
+ *     cdef uint64_t steam_id = friend_id
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_13steam_wrapper_23get_friend_game_played, 0, __pyx_n_s_get_friend_game_played, NULL, __pyx_n_s_steam_wrapper, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_friend_game_played, __pyx_t_3) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "steam_wrapper.pyx":1
@@ -7768,6 +8340,77 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value) {
     }
 }
 
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint32_t(uint32_t value) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const uint32_t neg_one = (uint32_t) -1, const_zero = (uint32_t) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(uint32_t) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(uint32_t) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(uint32_t) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(uint32_t) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(uint32_t) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        unsigned char *bytes = (unsigned char *)&value;
+#if !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x030d00A4
+        if (is_unsigned) {
+            return PyLong_FromUnsignedNativeBytes(bytes, sizeof(value), -1);
+        } else {
+            return PyLong_FromNativeBytes(bytes, sizeof(value), -1);
+        }
+#elif !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX < 0x030d0000
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        return _PyLong_FromByteArray(bytes, sizeof(uint32_t),
+                                     little, !is_unsigned);
+#else
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        PyObject *from_bytes, *result = NULL;
+        PyObject *py_bytes = NULL, *arg_tuple = NULL, *kwds = NULL, *order_str = NULL;
+        from_bytes = PyObject_GetAttrString((PyObject*)&PyLong_Type, "from_bytes");
+        if (!from_bytes) return NULL;
+        py_bytes = PyBytes_FromStringAndSize((char*)bytes, sizeof(uint32_t));
+        if (!py_bytes) goto limited_bad;
+        order_str = PyUnicode_FromString(little ? "little" : "big");
+        if (!order_str) goto limited_bad;
+        arg_tuple = PyTuple_Pack(2, py_bytes, order_str);
+        if (!arg_tuple) goto limited_bad;
+        if (!is_unsigned) {
+            kwds = PyDict_New();
+            if (!kwds) goto limited_bad;
+            if (PyDict_SetItemString(kwds, "signed", __Pyx_NewRef(Py_True))) goto limited_bad;
+        }
+        result = PyObject_Call(from_bytes, arg_tuple, kwds);
+        limited_bad:
+        Py_XDECREF(kwds);
+        Py_XDECREF(arg_tuple);
+        Py_XDECREF(order_str);
+        Py_XDECREF(py_bytes);
+        Py_XDECREF(from_bytes);
+        return result;
+#endif
+    }
+}
+
 /* FormatTypeName */
 #if CYTHON_COMPILING_IN_LIMITED_API
 static __Pyx_TypeName
@@ -7778,7 +8421,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__17);
+        name = __Pyx_NewRef(__pyx_n_s__22);
     }
     return name;
 }
